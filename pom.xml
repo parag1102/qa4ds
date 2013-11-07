@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>edu.cmu.lti.oaqa</groupId>
+    <artifactId>oaqa</artifactId>
+    <version>1</version>
+  </parent>
+  <groupId>edu.cmu.lti.oaqa.qa4ds</groupId>
+  <artifactId>qa4ds</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>Question Answering for Decision Support</name>
+  <description>A Decision Support System based on Question Answering</description>
+  <url>https://github.com/ziy/qa4ds</url>
+  <issueManagement>
+    <system>github.com</system>
+    <url>https://github.com/ziy/qa4ds/issues</url>
+  </issueManagement>
+  <inceptionYear>2013</inceptionYear>
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+  <scm>
+    <url>git@github.com:ziy/qa4ds.git</url>
+    <connection>scm:git:git@github.com:ziy/qa4ds.git</connection>
+    <developerConnection>scm:git:git@github.com:ziy/qa4ds.git</developerConnection>
+  </scm>
+  <repositories>
+    <repository>
+      <id>oaqa</id>
+      <url>http://mu.lti.cs.cmu.edu:8081/nexus/content/groups/public</url>
+    </repository>
+  </repositories>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <executable>java</executable>
+          <arguments>
+            <argument>-Xmx1500m</argument>
+            <argument>-Djava.library.path=${project.build.directory}/lib/</argument>
+            <argument>-classpath</argument>
+            <!-- automatically creates the classpath using all project dependencies, 
+              also adding the project build directory -->
+            <classpath />
+            <argument>edu.cmu.lti.oaqa.ecd.driver.ECDDriver</argument>
+            <argument>qa4ds.qa4ds-run</argument>
+          </arguments>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.6</source>
+          <target>1.6</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  <dependencies>
+    <dependency>
+      <groupId>edu.cmu.lti.oaqa.framework.impl</groupId>
+      <artifactId>jdbc-providers</artifactId>
+      <version>2.4.0-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>edu.cmu.lti.oaqa.bio.core</groupId>
+      <artifactId>baseqa</artifactId>
+      <version>2.0.0-SNAPSHOT</version>
+    </dependency>
+  </dependencies>
+</project>
