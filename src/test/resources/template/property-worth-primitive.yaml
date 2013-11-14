@@ -1,0 +1,4 @@
+# A primitive test question used in buying-a-house-composite decision situation
+question: What is PROPERTY worth in today's market?
+vars: [PROPERTY]
+name: property-worth-primitive

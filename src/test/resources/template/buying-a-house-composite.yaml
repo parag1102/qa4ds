@@ -1,0 +1,20 @@
+# A simple hierarchical question template for deciding if a house is worth to 
+# buy. This replaces the layered factor representation in the three-layer 
+# question hierarchy (buying-a-house-two-layers.yaml) by inheriting all factors
+# from stand-alone files.
+question: Is it worthwhile to buy PROPERTY?
+vars: [PROPERTY]
+name: buying-a-house-composite
+factors: 
+  - inherit: template.property-worth-primitive
+    weight: -0.5
+  - inherit: template.seller-flexible-price-composite
+    weight: 1.3
+  - inherit: template.property-wrong-primitive
+    weight: -0.3
+  - inherit: template.property-flood-composite
+    weight: -1.5
+  - inherit: template.lender-allow-short-sale-primitive
+    weight: 1.5
+  - inherit: template.foreclosure-for-sale-primitive
+    weight: -2.0

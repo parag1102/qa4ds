@@ -1,0 +1,4 @@
+# A primitive test question used in buying-a-house-composite decision situation
+question: Will the lender of PROPERTY allow a short sale?
+vars: [PROPERTY]
+name: lender-allow-short-sale-primitive

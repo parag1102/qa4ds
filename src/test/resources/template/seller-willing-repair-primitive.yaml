@@ -1,0 +1,5 @@
+# A simple question template for deciding if a house is worth to buy with no
+# further factor analysis 
+question: Is the seller of PROPERTY willing to make any repairs if needed?
+vars: [PROPERTY]
+name: seller-willing-repair-primitive

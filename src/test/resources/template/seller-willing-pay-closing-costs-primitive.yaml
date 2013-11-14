@@ -1,0 +1,4 @@
+# A primitive test question used in seller-flexible-price-composite decision situation
+question: Will the seller of PROPERTY pay for closing costs?
+vars: [PROPERTY]
+name: seller-willing-pay-closing-costs

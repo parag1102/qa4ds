@@ -1,0 +1,7 @@
+# A composite test question used in buying-a-house-composite decision situation
+question: Is PROPERTY in a flood plain?
+vars: [PROPERTY]
+name: property-flood-composite
+factors: 
+  - inherit: template.water-level-fluctuate-primitive
+    weight: 0.3

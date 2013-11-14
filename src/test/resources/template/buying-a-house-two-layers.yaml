@@ -1,0 +1,35 @@
+# A simple hierarchical question template for deciding if a house is worth to 
+# buy. This is a simplified decision template modified from a post 
+# https://origin.bankrate.com/finance/real-estate/7-questions-buying-home-1.aspx
+# Changes include:
+#  - Personalized questions are ignored, e.g. "Do you have the paperwork for 
+#    the mechanical systems?"
+#  - Coreference of the pronouns are resolved by adding varable names. 
+question: Is it worthwhile to buy PROPERTY?
+vars: [PROPERTY]
+name: buying-a-house-two-layers
+factors: 
+  - question: What is PROPERTY worth in today's market?
+    vars: [PROPERTY]
+    name: property-worth-primitive
+    weight: -0.5
+  - question: How flexible is the seller of PROPERTY on the asking price?
+    vars: [PROPERTY]
+    name: seller-flexible-price-composite
+    weight: 1.3
+  - question: What's wrong with PROPERTY?
+    vars: [PROPERTY]
+    name: property-wrong-primitive
+    weight: -0.3
+  - question: Is PROPERTY in a flood plain?
+    vars: [PROPERTY]
+    name: property-flood-composite
+    weight: -1.5
+  - question: Will the lender of PROPERTY allow a short sale?
+    vars: [PROPERTY]
+    name: lender-allow-short-sale-primitive
+    weight: 1.5
+  - question: Are any foreclosures for sale in the area of PROPERTY?
+    vars: [PROPERTY]
+    name: foreclosure-for-sale-primitive
+    weight: -2.0

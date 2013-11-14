@@ -1,0 +1,4 @@
+# A primitive test question used in seller-flexible-price-composite decision situation
+question: Is the seller of PROPERTY willing to negotiate on the price and terms?
+vars: [PROPERTY]
+name: seller-willing-negociate-price

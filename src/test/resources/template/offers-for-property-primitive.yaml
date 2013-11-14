@@ -1,0 +1,4 @@
+# A primitive test question used in seller-flexible-price-composite decision situation
+question: Have there been any offers yet for PROPERTY?
+vars: [PROPERTY]
+name: offers-for-property-primitive

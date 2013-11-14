@@ -1,0 +1,4 @@
+# A primitive test question used in property-flood-composite decision situation
+question: Does the water in the area of PROPERTY level fluctuate?
+vars: [PROPERTY]
+name: water-level-fluctuate-primitive

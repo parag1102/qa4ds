@@ -1,0 +1,4 @@
+# A primitive test question used in buying-a-house-composite decision situation
+question: Are any foreclosures for sale in the area of PROPERTY?
+vars: [PROPERTY]
+name: foreclosure-for-sale-primitive

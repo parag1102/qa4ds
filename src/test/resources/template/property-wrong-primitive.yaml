@@ -1,0 +1,4 @@
+# A primitive test question used in buying-a-house-composite decision situation
+question: What's wrong with PROPERTY?
+vars: [PROPERTY]
+name: property-wrong-primitive

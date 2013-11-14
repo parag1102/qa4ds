@@ -1,0 +1,5 @@
+# A simple question template for deciding if a house is worth to buy with no
+# further factor analysis 
+question: Is it worthwhile to buy PROPERTY?
+vars: [PROPERTY]
+name: buying-a-house-one-layer

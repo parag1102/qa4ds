@@ -1,0 +1,13 @@
+# A composite test question used in buying-a-house-composite decision situation
+question: How flexible is the seller of PROPERTY on the asking price?
+vars: [PROPERTY]
+name: seller-flexible-price-composite
+factors: 
+  - inherit: template.offers-for-property-primitive
+    weight: 0.6
+  - inherit: template.seller-willing-negociate-price-primitive
+    weight: 1.3
+  - inherit: template.seller-willing-repair-primitive
+    weight: 0.3
+  - inherit: template.seller-willing-pay-closing-costs-primitive
+    weight: 0.4

@@ -1,0 +1,9 @@
+# An example question based on buying-a-house-two-layers template
+- template: template.buying-a-house-one-layer
+- values: 
+    - 267 William St., Pittsburgh, PA 15203
+- template: template.buying-a-house-two-layers
+- values: 
+    - 267 William St., Pittsburgh, PA 15203
+- values:
+    - 410 William St., Mount Washington, PA 15211

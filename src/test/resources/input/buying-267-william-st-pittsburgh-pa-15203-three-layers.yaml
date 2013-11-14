@@ -1,0 +1,4 @@
+# An example question based on buying-a-house-three-layers template
+- template: template.buying-a-house-three-layers
+- values: 
+    - 267 William St., Pittsburgh, PA 15203
