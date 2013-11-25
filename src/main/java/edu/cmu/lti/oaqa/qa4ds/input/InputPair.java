@@ -1,14 +1,14 @@
 package edu.cmu.lti.oaqa.qa4ds.input;
 
-import java.util.List;
+import java.util.Map;
 
 public class InputPair {
 
   private String key;
 
-  private List<String> value;
+  private Map<String, String> value;
 
-  public InputPair(String key, List<String> value) {
+  public InputPair(String key, Map<String, String> value) {
     super();
     this.key = key;
     this.value = value;
@@ -54,7 +54,7 @@ public class InputPair {
     return key;
   }
 
-  public List<String> getValue() {
+  public Map<String, String> getValue() {
     return value;
   }
 

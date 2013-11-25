@@ -1,0 +1,49 @@
+pipeline:
+  - inherit: gerp.core.GerpPhase
+    name: question-parsing
+    type: org.oaqa.model.nlp.Parse
+    generators: |
+      - inherit: baseqa.gerp.parse.DummyQuestionParseGenerator
+    evidencers: |
+      - inherit: baseqa.gerp.parse.IdenticalQuestionParseEvidencer
+    rankers: |
+      - inherit: base.noop
+    pruners: |
+      - inherit: base.noop
+
+  - inherit: gerp.core.GerpPhase
+    name: question-interpretation
+    type: org.oaqa.model.kb.Interpretation
+    generators: |
+      - inherit: baseqa.gerp.interpretation.DummyQuestionInterpretationGenerator
+    evidencers: |
+      - inherit: baseqa.gerp.interpretation.IdenticalQuestionInterpretationEvidencer
+    rankers: |
+      - inherit: base.noop
+    pruners: |
+      - inherit: base.noop
+
+  - inherit: gerp.core.GerpPhase
+    name: query-formulation
+    type: org.oaqa.model.retrieval.AbstractQuery
+    generators: |
+      - inherit: baseqa.gerp.retrieval.ConceptAwareQueryGenerator
+    evidencers: |
+      - inherit: baseqa.gerp.retrieval.IdenticalQueryEvidencer
+    rankers: |
+      - inherit: base.noop
+    pruners: |
+      - inherit: base.noop
+
+  - inherit: gerp.core.GerpPhase
+    name: answering
+    type: org.oaqa.model.answer.AnswerList
+    generators: |
+      - inherit: baseqa.gerp.answer.QueryTermAnswerGenerator
+    evidencers: |
+      - inherit: baseqa.gerp.answer.IdenticalAnswerEvidencer
+      - inherit: baseqa.gerp.answer.RandomAnswerEvidencer
+    rankers: |
+      - inherit: base.noop
+    pruners: |
+      - inherit: base.noop

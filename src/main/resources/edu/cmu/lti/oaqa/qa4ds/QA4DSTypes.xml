@@ -9,31 +9,25 @@
   </imports>
   <types>
     <typeDescription>
-      <name>edu.cmu.lti.oaqa.qa4ds.types.DecisionTemplate</name>
+      <name>edu.cmu.lti.oaqa.qa4ds.types.DecisionConfiguration</name>
       <description/>
       <supertypeName>uima.cas.TOP</supertypeName>
-      <features>
-        <featureDescription>
-          <name>name</name>
+    <features>
+      <featureDescription>
+          <name>templateName</name>
           <description/>
           <rangeTypeName>uima.cas.String</rangeTypeName>
         </featureDescription>
         <featureDescription>
-          <name>vars</name>
-          <description/>
-          <rangeTypeName>uima.cas.StringList</rangeTypeName>
-          <multipleReferencesAllowed>false</multipleReferencesAllowed>
-        </featureDescription>
-      <featureDescription>
           <name>question</name>
           <description/>
-          <rangeTypeName>uima.cas.String</rangeTypeName>
+          <rangeTypeName>org.oaqa.model.input.Question</rangeTypeName>
         </featureDescription>
         <featureDescription>
           <name>factors</name>
           <description/>
           <rangeTypeName>uima.cas.FSList</rangeTypeName>
-          <elementType>edu.cmu.lti.oaqa.qa4ds.types.WeightedDecisionTemplate</elementType>
+        <elementType>edu.cmu.lti.oaqa.qa4ds.types.DecisionDiagramConfiguration</elementType>
           <multipleReferencesAllowed>false</multipleReferencesAllowed>
         </featureDescription>
         <featureDescription>
@@ -41,40 +35,34 @@
           <description/>
           <rangeTypeName>uima.cas.Boolean</rangeTypeName>
         </featureDescription>
-      </features>
-    </typeDescription>
-  <typeDescription>
-      <name>edu.cmu.lti.oaqa.qa4ds.types.WeightDecisionTemplate</name>
-      <description/>
-      <supertypeName>uima.cas.TOP</supertypeName>
-      <features>
-        <featureDescription>
-          <name>template</name>
-          <description/>
-          <rangeTypeName>edu.cmu.lti.oaqa.qa4ds.types.DecisionTemplate</rangeTypeName>
-        </featureDescription>
         <featureDescription>
           <name>weight</name>
           <description/>
           <rangeTypeName>uima.cas.Double</rangeTypeName>
         </featureDescription>
-      </features>
-    </typeDescription>
-  <typeDescription>
-      <name>edu.cmu.lti.oaqa.qa4ds.types.DecisionTemplateInput</name>
-      <description/>
-      <supertypeName>uima.cas.TOP</supertypeName>
-      <features>
         <featureDescription>
-          <name>template</name>
+          <name>configuration</name>
           <description/>
-          <rangeTypeName>edu.cmu.lti.oaqa.qa4ds.types.DecisionTemplate</rangeTypeName>
+          <rangeTypeName>uima.cas.String</rangeTypeName>
         </featureDescription>
         <featureDescription>
           <name>values</name>
           <description/>
-          <rangeTypeName>uima.cas.StringList</rangeTypeName>
+          <rangeTypeName>uima.cas.FSList</rangeTypeName>
+        <elementType>edu.cmu.lti.oaqa.qa4ds.types.DecisionValue</elementType>
           <multipleReferencesAllowed>false</multipleReferencesAllowed>
+        </featureDescription>
+      </features>
+    </typeDescription>
+  <typeDescription>
+      <name>edu.cmu.lti.oaqa.qa4ds.types.DecisionValue</name>
+      <description/>
+      <supertypeName>uima.tcas.Annotation</supertypeName>
+      <features>
+        <featureDescription>
+          <name>variable</name>
+          <description/>
+          <rangeTypeName>uima.cas.String</rangeTypeName>
         </featureDescription>
       </features>
     </typeDescription>

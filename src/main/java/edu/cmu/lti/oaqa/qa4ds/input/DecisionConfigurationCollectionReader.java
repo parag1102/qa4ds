@@ -14,36 +14,40 @@ import com.google.common.collect.Lists;
 
 import edu.cmu.lti.oaqa.framework.DataElement;
 import edu.cmu.lti.oaqa.framework.collection.IterableCollectionReader;
-import edu.cmu.lti.oaqa.qa4ds.types.DecisionTemplate;
-import edu.cmu.lti.oaqa.qa4ds.types.DecisionTemplateInput;
+import edu.cmu.lti.oaqa.qa4ds.types.DecisionConfiguration;
 
-public class DecisionTemplateInputCollectionReader extends IterableCollectionReader {
+public class DecisionConfigurationCollectionReader extends IterableCollectionReader {
+
+  private static Yaml yaml = new Yaml();
 
   private List<InputPair> inputs = Lists.newArrayList();
 
   private int count = -1;
 
+  private String confPath;
+
   @SuppressWarnings("unchecked")
   @Override
   protected Iterator<DataElement> getInputSet() throws ResourceInitializationException {
     // load input file
-    String resource = (String) getConfigParameterValue("file");
-    String parsedResourcePath = ResourceUtil.getResourceLocation(resource);
-    Yaml yaml = new Yaml();
-    InputStream is = getClass().getResourceAsStream(parsedResourcePath);
+    String inputPath = ResourceUtil.getResourceLocation((String) getConfigParameterValue("input"));
+    InputStream is = getClass().getResourceAsStream(inputPath);
     List<Map<String, Object>> data = (List<Map<String, Object>>) yaml.load(is);
     // create (template, values) pairs
     String template = null;
-    List<String> values = null;
+    Map<String, String> values = null;
     for (Map<String, Object> datum : data) {
       if (datum.containsKey("template")) {
         template = (String) datum.get("template");
       }
       if (datum.containsKey("values") && template != null) {
-        values = (List<String>) datum.get("values");
+        values = (Map<String, String>) datum.get("values");
         inputs.add(new InputPair(template, values));
       }
     }
+    // load configuration file
+    confPath = (String) getConfigParameterValue("conf");
+    // return input pair iterator
     return new Iterator<DataElement>() {
 
       @Override
@@ -65,23 +69,21 @@ public class DecisionTemplateInputCollectionReader extends IterableCollectionRea
     };
   }
 
-  // Default decorator to add input and decision template into the JCas loaded from input yaml.
+  // default decorator to add input and decision template into the JCas loaded from input yaml.
   @Override
   protected void decorate(JCas jcas) throws AnalysisEngineProcessException {
-    super.decorate(jcas);
     InputPair pair = inputs.get(count);
     try {
-      DecisionTemplate template = DecisionTemplateFactory.loadFromResource(jcas, pair.getKey());
-      if (DecisionTemplateFactory.getVars(template).size() != pair.getValue().size()) {
-        throw new DecisionTemplateInputValuesUnmatchException(DecisionTemplateFactory.getVars(
-                template).size(), pair.getValue().size());
-      }
-      DecisionTemplateInput input = DecisionTemplateInputFactory.create(jcas, template,
-              pair.getValue());
+      String templatePath = pair.getKey();
+      Map<String, String> var2value = pair.getValue();
+      DecisionConfiguration input = DecisionConfigurationFactory.loadFromResource(jcas,
+              templatePath, var2value, confPath);
       input.addToIndexes(jcas);
     } catch (Exception e) {
       throw new AnalysisEngineProcessException(e);
     }
+    // call other decorators
+    super.decorate(jcas);
   }
 
 }

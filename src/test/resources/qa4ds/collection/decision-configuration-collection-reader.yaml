@@ -1,4 +1,4 @@
-class: edu.cmu.lti.oaqa.qa4ds.input.DecisionTemplateInputCollectionReader
+class: edu.cmu.lti.oaqa.qa4ds.input.DecisionConfigurationCollectionReader
 
 persistence-provider: |
   inherit: ecd.default-experiment-persistence-provider

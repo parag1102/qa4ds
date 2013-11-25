@@ -2,9 +2,9 @@ package edu.cmu.lti.oaqa.qa4ds.input;
 
 import com.google.common.base.Predicate;
 
-import edu.cmu.lti.oaqa.qa4ds.types.WeightDecisionTemplate;
+import edu.cmu.lti.oaqa.qa4ds.types.DecisionConfiguration;
 
-public class MatchesQuestionWeight implements Predicate<WeightDecisionTemplate> {
+public class MatchesQuestionWeight implements Predicate<DecisionConfiguration> {
 
   private String question;
 
@@ -16,8 +16,8 @@ public class MatchesQuestionWeight implements Predicate<WeightDecisionTemplate> 
   }
 
   @Override
-  public boolean apply(WeightDecisionTemplate template) {
-    return question.equals(template.getTemplate().getQuestion()) && weight == template.getWeight();
+  public boolean apply(DecisionConfiguration decision) {
+    return question.equals(decision.getQuestion().getText()) && weight == decision.getWeight();
   }
 
 }

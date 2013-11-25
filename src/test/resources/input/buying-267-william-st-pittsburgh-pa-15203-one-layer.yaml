@@ -1,4 +1,4 @@
 # An example question based on buying-a-house-one-layer template
 - template: template.buying-a-house-one-layer
 - values: 
-    - 267 William St., Pittsburgh, PA 15203
+    PROPERTY: 267 William St., Pittsburgh, PA 15203
