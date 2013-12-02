@@ -1,14 +1,12 @@
 package edu.cmu.lti.oaqa.qa4ds.input;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import org.apache.uima.jcas.JCas;
 import org.oaqa.model.input.Question;
-import org.yaml.snakeyaml.Yaml;
 
 import com.google.common.base.Predicates;
 import com.google.common.collect.ImmutableSet;
@@ -18,10 +16,9 @@ import com.google.common.collect.Sets;
 
 import edu.cmu.lti.oaqa.qa4ds.types.DecisionConfiguration;
 import edu.cmu.lti.oaqa.qa4ds.types.DecisionValue;
+import edu.cmu.lti.oaqa.qa4ds.util.EcdUtil;
 
 public final class DecisionConfigurationFactory {
-
-  private static Yaml yaml = new Yaml();
 
   static DecisionConfiguration loadFromResource(JCas jcas, String templatePath,
           Map<String, String> var2value, String confPath) throws IOException,
@@ -30,18 +27,12 @@ public final class DecisionConfigurationFactory {
             loadConfigurationResource(confPath));
   }
 
-  @SuppressWarnings("unchecked")
   private static Map<String, Object> loadTemplateResource(String templatePath) {
-    String parsedResourcePath = ResourceUtil.getResourceLocation(templatePath);
-    InputStream is = DecisionConfigurationFactory.class.getResourceAsStream(parsedResourcePath);
-    return (Map<String, Object>) yaml.load(is);
+    return EcdUtil.<Object> loadResource(templatePath);
   }
 
-  @SuppressWarnings("unchecked")
   private static Map<String, String> loadConfigurationResource(String confPath) {
-    String parsedConfPath = ResourceUtil.getResourceLocation(confPath);
-    InputStream is = DecisionConfigurationFactory.class.getResourceAsStream(parsedConfPath);
-    return (Map<String, String>) yaml.load(is);
+    return EcdUtil.<String> loadResource(confPath);
   }
 
   @SuppressWarnings("unchecked")
@@ -56,11 +47,7 @@ public final class DecisionConfigurationFactory {
     parent.setPrimitive(false);
     List<DecisionConfiguration> factors = Lists.newArrayList();
     for (Map<String, Object> factor : (List<Map<String, Object>>) templateData.get("factors")) {
-      if (factor.containsKey("inherit")) {
-        Map<String, Object> factorData = loadTemplateResource((String) factor.get("inherit"));
-        factor.remove("inherit");
-        factor.putAll(factorData);
-      }
+      EcdUtil.<Object> resolveInherit(factor);
       DecisionConfiguration child = createComposite(jcas, factor, var2value, confData);
       factors.add(child);
     }

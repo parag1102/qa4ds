@@ -1,0 +1,14 @@
+configuration:
+  name: qa4ds-one-layer-test
+  author: ziy
+
+persistence-provider:
+  inherit: db.default-persistence-provider
+
+collection-reader:
+  inherit: qa4ds.collection.decision-configuration-collection-reader
+  input: input.buying-267-william-st-pittsburgh-pa-15203-two-layers
+  conf: qa4ds.complex-decision-conf
+
+pipeline:
+  - inherit: qa4ds.recursive-phase

@@ -9,8 +9,23 @@ import edu.cmu.lti.oaqa.ecd.driver.ECDDriver;
 public class Qa4dsTest {
 
   @Test
-  public void testOneLayerPipeline() throws Exception {
-    testPipeline("qa4ds.qa4ds-one-layer-test");
+  public void testOneLayerDefaultPipeline() throws Exception {
+    testPipeline("qa4ds.qa4ds-one-layer-default-test");
+  }
+
+  @Test
+  public void testOneLayerComplexPipeline() throws Exception {
+    testPipeline("qa4ds.qa4ds-one-layer-complex-test");
+  }
+
+  @Test
+  public void testTwoLayersDefaultPipeline() throws Exception {
+    testPipeline("qa4ds.qa4ds-two-layers-default-test");
+  }
+
+  @Test
+  public void testTwoLayersComplexPipeline() throws Exception {
+    testPipeline("qa4ds.qa4ds-two-layers-complex-test");
   }
 
   void testPipeline(String resource) throws Exception {

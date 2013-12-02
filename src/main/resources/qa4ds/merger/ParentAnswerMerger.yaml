@@ -1,0 +1,4 @@
+class: edu.cmu.lti.oaqa.qa4ds.merger.ParentAnswerMerger
+
+persistence-provider: |
+  inherit: ecd.default-experiment-persistence-provider

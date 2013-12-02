@@ -15,6 +15,7 @@ import com.google.common.collect.Lists;
 import edu.cmu.lti.oaqa.framework.DataElement;
 import edu.cmu.lti.oaqa.framework.collection.IterableCollectionReader;
 import edu.cmu.lti.oaqa.qa4ds.types.DecisionConfiguration;
+import edu.cmu.lti.oaqa.qa4ds.util.EcdUtil;
 
 public class DecisionConfigurationCollectionReader extends IterableCollectionReader {
 
@@ -30,7 +31,7 @@ public class DecisionConfigurationCollectionReader extends IterableCollectionRea
   @Override
   protected Iterator<DataElement> getInputSet() throws ResourceInitializationException {
     // load input file
-    String inputPath = ResourceUtil.getResourceLocation((String) getConfigParameterValue("input"));
+    String inputPath = EcdUtil.getResourceLocation((String) getConfigParameterValue("input"));
     InputStream is = getClass().getResourceAsStream(inputPath);
     List<Map<String, Object>> data = (List<Map<String, Object>>) yaml.load(is);
     // create (template, values) pairs

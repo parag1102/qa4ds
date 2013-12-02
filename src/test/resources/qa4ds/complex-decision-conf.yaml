@@ -4,18 +4,10 @@ default: |
     - inherit: qa4ds.pipeline.simple-dummy-pipeline
   mergers:
     - inherit: base.noop
-  rankers:
-    - inherit: base.noop
-  pruners:
-    - inherit: base.noop
 # configuration for
 property-flood-composite: |
   analyzers:
     - inherit: qa4ds.pipeline.simple-dummy-pipeline
     - inherit: qa4ds.pipeline.full-dummy-pipeline
   mergers:
-    - inherit: base.noop
-  rankers:
-    - inherit: base.noop
-  pruners:
     - inherit: base.noop

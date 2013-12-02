@@ -3,8 +3,4 @@
     analyzers:
       - inherit: qa4ds.pipeline.simple-test-pipeline
     mergers:
-      - inherit: base.noop
-    rankers:
-      - inherit: base.noop
-    pruners:
-      - inherit: base.noop
+      - inherit: qa4ds.merger.WeightedSumMerger
